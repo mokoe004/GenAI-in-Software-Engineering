@@ -1,5 +1,3 @@
-# zeigt aktuellen Fortschritt der roadmap an
-# GUI Anwendung: Tkinter oder PyQt
 import time
 import json
 import matplotlib.pyplot as plt
