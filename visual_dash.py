@@ -2,39 +2,27 @@ import dash
 from dash import dcc, html, Input, Output, State
 import plotly.express as px
 import pandas as pd
+import json
 
 # Create Dash app
 app = dash.Dash(__name__)
 app.title = "GitHub Copilot Implementation Simulator"
 
-# Example Data for Milestones
-roadmap_data = pd.DataFrame({
-    "Iteration": ["Planning & Training", "Pilot Implementation", "Refinement", "Full Integration"],
-    "Start": ["2025-01-01", "2025-01-22", "2025-03-01", "2025-05-01"],
-    "End": ["2025-01-21", "2025-02-28", "2025-04-30", "2025-06-30"],
-    "Milestones": [
-        "Stakeholder training completed",
-        "Pilot success feedback gathered",
-        "90% issues resolved",
-        "Full integration achieved"
-    ]
-})
+with open('params.json', 'r') as file:
+    data = json.load(file)
+
+# Milestones in DataFrame umwandeln
+roadmap_data = pd.DataFrame(data['milestones'])
 roadmap_data["Start"] = pd.to_datetime(roadmap_data["Start"])
 roadmap_data["End"] = pd.to_datetime(roadmap_data["End"])
 
-# Example KPIs
-kpi_data = {
-"Productivity Increase":100,
-    "Error Reduction": 100,
-    "Adoption Rate" : 100,
-}
+# KPIs laden
+kpi_data = data['kpis']
 
-# Wert wird durch KPIs und Länge der Iterationen bestimmt. Zusammenhang zu Iterationen herstellen?
-csf_data = {
-    "Metric": ["Technical Infrastructure", "Employee Acceptance", "ROI", "Code Quality", "Data Privacy"],
-    "Current": [60, 20, 60, 40, 50],
-    "Target": [100, 100, 100, 100,100]
-}
+# CSFs in DataFrame umwandeln
+csf_data = pd.DataFrame(data['csfs'])
+
+goals = data['goals']
 
 # Layout
 app.layout = html.Div([
@@ -195,11 +183,6 @@ def update_timeline(update_clicks, reset_clicks, achieved_milestones, iteration,
     ]
 )
 def update_simulation(*args):
-    goals = [
-        "Increase productivity, quality, and sustainability of the team's software development processes.",
-        "Seamlessly integrate CoPilot into the team’s workflows.",
-        "Ensure team members' acceptance and engagement with CoPilot."
-    ]
     # Calculate probabilities based on the KPI sliders
     probabilities = [f"{value}%" for value in args]
     # Prepare the goals output
