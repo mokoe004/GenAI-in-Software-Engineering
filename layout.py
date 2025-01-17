@@ -1,4 +1,4 @@
-from modal import get_modale_button
+from modal import get_modal_button
 from data import roadmap_data, kpi_data, csf_data, team_members, goals
 
 from dash import html, dcc
@@ -10,9 +10,17 @@ import pandas as pd
 
 # Layout
 def create_layout():
+    """
+    Create the layout of the app
+
+    Returns:
+    --------
+    dbc.Container: The layout of the app
+    """
     return dbc.Container(className="p-3", children=[
         html.H1("GitHub Copilot Implementation Simulator"),
-        get_modale_button(),
+        get_modal_button(),
+        html.Div([], id="out-div"),
         dbc.Container([
             html.H2("Roadmap Timeline"),
             dcc.Graph(
@@ -27,29 +35,44 @@ def create_layout():
                     yaxis_title="Implementation Phase",
                     showlegend=False
                 )
-            )
+            ),
+            dbc.Offcanvas(
+                html.P(
+                    "This is the content of the Offcanvas. "
+                    "Close it by clicking on the close button, or "
+                    "the backdrop."
+                ),
+                id="offcanvas",
+                title="Iteration specific",
+                is_open=False,
+            ),
+
         ]),
         dbc.Container([
                 html.H3("Adjust Iterations"),
-                html.Div([
+                dbc.Container([
                     html.Label("Select Iteration:"),
                     dcc.Dropdown(
                         id="iteration-dropdown",
                         options=[{"label": name, "value": name} for name in roadmap_data["Iteration"]],
                         value="Planning & Training"
                     ),
-                    html.Label("Start Date:"),
-                    dcc.DatePickerSingle(id="start-date-picker", date=str(roadmap_data.iloc[0]["Start"].date())),
-                    html.Label("End Date:"),
-                    dcc.DatePickerSingle(id="end-date-picker", date=str(roadmap_data.iloc[0]["End"].date()))
-                ], style={"marginTop": "20px"})
+                    dbc.Container([
+                        dbc.Label("Start Date:", className="mx-3"),
+                        dcc.DatePickerSingle(id="start-date-picker", date=str(roadmap_data.iloc[0]["Start"].date())),
+                        dbc.Label("End Date:", className="mx-3"),
+                        dcc.DatePickerSingle(id="end-date-picker", date=str(roadmap_data.iloc[0]["End"].date()))
+                    ], className="p-3"),
+
+                ], className="mt-30")
             ]),
         dbc.Button("Update Timeline", id="update-timeline-btn", n_clicks=0, className="m-3"),
         dbc.Button("Reset Timeline", id="reset-timeline-btn", n_clicks=0, className="m-3"),
         dbc.Container([
             html.H4("Mark Milestones as Achieved"),
             html.Div([
-                dcc.Checklist(
+
+                dbc.Checklist(
                     id="milestones-checklist",
                     options=[
                         {"label": milestone, "value": iteration}
@@ -58,7 +81,7 @@ def create_layout():
                     value=[],
                     inline=True
                 )
-            ], style={"marginTop": "20px"})
+            ], className="mt-3 ml-3")
         ]),
         dbc.Container([
             html.H2("Critical Succes Factors (CSF)"),

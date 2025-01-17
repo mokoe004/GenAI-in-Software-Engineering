@@ -74,67 +74,78 @@
             "name": "PO2",
             "role": "Product Owner",
             "experience_years": 10,
-            "age": 50
+            "age": 50,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "M1",
             "role": "Manager",
             "experience_years": 30,
-            "age": 55
+            "age": 55,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "A1",
             "role": "Architect",
             "experience_years": 20,
-            "age": 40
+            "age": 40,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "A2",
             "role": "Architect",
             "experience_years": 10,
-            "age": 35
+            "age": 35,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "A3",
             "role": "Architect",
             "experience_years": 5,
-            "age": 25
+            "age": 25,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "D1",
             "role": "Developer",
             "experience_years": 5,
-            "age": 27
+            "age": 27,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "D2",
             "role": "Developer",
             "experience_years": 7,
-            "age": 29
+            "age": 29,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "D3",
             "role": "Developer",
             "experience_years": 3,
-            "age": 23
+            "age": 23,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "D4",
             "role": "Developer",
             "experience_years": 25,
-            "age": 52
+            "age": 52,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "D5",
             "role": "Developer",
             "experience_years": 20,
-            "age": 50
+            "age": 50,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         },
         {
             "name": "D6",
             "role": "Developer",
             "experience_years": 12,
-            "age": 42
+            "age": 42,
+          "params": [{"Level of Commitment": 3},{"Resistance": 5},{"Impact on team": 5}]
         }
     ]
 
