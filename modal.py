@@ -1,7 +1,7 @@
 from dash import Dash, html, Input, Output, State, ctx, dcc
 import dash_bootstrap_components as dbc
 
-from data import roadmap_data, kpi_data, csf_data, team_members, goals
+from data import config
 
 # Layout of the modal
 def get_modal_button():
@@ -23,7 +23,7 @@ def get_modal_button():
                     dbc.Label("Team Member:"),
                     dcc.Dropdown(
                         id="member-dropdown",
-                        options=[{"label": member["name"], "value": member["name"]} for member in team_members],
+                        options=[{"label": member["name"], "value": member["name"]} for member in config.team_members],
                         placeholder="Select a role"
                     )
                 ], className="mb-3"),
@@ -91,7 +91,7 @@ def register_modal_callbacks(app):
 
         # Update static displays based on selected member
         if selected_member:
-            member = next((m for m in team_members if m["name"] == selected_member), None)
+            member = next((m for m in config.team_members if m["name"] == selected_member), None)
             if member:
                 experience = f"{member['experience_years']} years"
                 age = f"{member['age']} years"
@@ -110,25 +110,31 @@ def register_modal_callbacks(app):
     def save_changes(save_clicks, name,  commitment, resistance, impact):
         """Save the entered parameters and display them."""
         if save_clicks > 0:
-            for member in team_members:
+            for member in config.team_members:
                 if member["name"] == name:
-                    member["commitment"] = commitment
-                    member["resistance"] = resistance
-                    member["impact"] = impact
-                    return dbc.Alert(
-                        f"Changed {name} successfully!",
-                        id="alert-fade",
-                        dismissable=True,
-                        is_open=True,
-                        duration=4000
-                    )
-        return dbc.Alert(
-            "Please select a team member before saving!",
-            id="alert-warning",
+                    member["params"]["Level of Commitment"] = commitment
+                    member["params"]["Resistance"] = resistance
+                    member["params"]["Impact on team"] = impact
+                    return dbc.Toast(
+            f"Changes saved for {name}!",
+            id="positioned-toast",
+            header="Positioned toast",
             dismissable=True,
-            is_open=True,
-            color="warning",
-            duration=4000)
+            icon="success",
+            duration=4000,
+            # top: 66 positions the toast below the navbar
+            style={"position": "fixed", "top": 66, "right": 10, "width": 350},
+        )
+        return dbc.Toast(
+            "Please select a team member before saving!",
+            id="positioned-toast",
+            header="Positioned toast",
+            dismissable=True,
+            icon="danger",
+            duration=4000,
+            # top: 66 positions the toast below the navbar
+            style={"position": "fixed", "top": 66, "right": 10, "width": 350},
+        )
 
     @app.callback(
         Output("collapse", "is_open"),

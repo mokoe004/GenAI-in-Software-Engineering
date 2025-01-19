@@ -1,23 +1,32 @@
 import pandas as pd
 import json
 
-# Load parameters from the JSON file
-with open('params.json', 'r') as file:
-    data = json.load(file)
+class Config:
+    def __init__(self):
+        with open('params.json', 'r') as file:
+            data = json.load(file)
 
-# Convert milestones to a DataFrame and parse dates
-roadmap_data = pd.DataFrame(data['milestones'])
-roadmap_data["Start"] = pd.to_datetime(roadmap_data["Start"])
-roadmap_data["End"] = pd.to_datetime(roadmap_data["End"])
+        self.roadmap_data = pd.DataFrame(data['milestones'])
+        self.roadmap_data["Start"] = pd.to_datetime(self.roadmap_data["Start"])
+        self.roadmap_data["End"] = pd.to_datetime(self.roadmap_data["End"])
 
-# Load KPIs
-kpi_data = data['kpis']
+        self.kpi_data = data['kpis']
+        self.csf_data = pd.DataFrame(data['csfs'])
+        self.goals = data['goals']
+        self.team_members = data['team_members']
+        self.success_rate = 20.00
+        self.goal_probabilities_list = init_goal_probabilities_list(self.goals)
 
-# Convert CSFs to a DataFrame
-csf_data = pd.DataFrame(data['csfs'])
 
-# Load goals
-goals = data['goals']
 
-# Load team members
-team_members = data['team_members']
+def init_goal_probabilities_list(goals):
+    goal_probabilities_list = []
+    for goal in goals:
+            goal_probabilities_list.append(
+                {
+                        "Goal": goal["Description"],
+                    "Probability": 0.22  # Platzhalter
+                }
+            )
+    return goal_probabilities_list
+config = Config()

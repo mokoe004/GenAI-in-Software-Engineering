@@ -1,5 +1,6 @@
 from modal import get_modal_button
-from data import roadmap_data, kpi_data, csf_data, team_members, goals
+from data import config
+from goals_display import get_goals_card_body
 
 from dash import html, dcc
 import dash_bootstrap_components as dbc
@@ -26,10 +27,13 @@ def create_layout():
             dcc.Graph(
                 id="roadmap-timeline",
                 figure=px.timeline(
-                    roadmap_data, x_start="Start", x_end="End", y="Iteration", color="Iteration",
-                    title="Implementation Timeline",
+                    config.roadmap_data, x_start="Start", x_end="End", y="Iteration", color="Iteration",
+                    title="Implementation Timeline - hover over the bars for more details, click to expand",
                     labels={"Iteration": "Phase"},
                     text="Milestones"
+                ).update_traces(
+                    textposition="outside",
+                    textfont=dict(size=10)
                 ).update_layout(
                     xaxis_title="Timeline",
                     yaxis_title="Implementation Phase",
@@ -46,7 +50,6 @@ def create_layout():
                 title="Iteration specific",
                 is_open=False,
             ),
-
         ]),
         dbc.Container([
                 html.H3("Adjust Iterations"),
@@ -54,14 +57,14 @@ def create_layout():
                     html.Label("Select Iteration:"),
                     dcc.Dropdown(
                         id="iteration-dropdown",
-                        options=[{"label": name, "value": name} for name in roadmap_data["Iteration"]],
+                        options=[{"label": name, "value": name} for name in config.roadmap_data["Iteration"]],
                         value="Planning & Training"
                     ),
                     dbc.Container([
                         dbc.Label("Start Date:", className="mx-3"),
-                        dcc.DatePickerSingle(id="start-date-picker", date=str(roadmap_data.iloc[0]["Start"].date())),
+                        dcc.DatePickerSingle(id="start-date-picker", date=str(config.roadmap_data.iloc[0]["Start"].date())),
                         dbc.Label("End Date:", className="mx-3"),
-                        dcc.DatePickerSingle(id="end-date-picker", date=str(roadmap_data.iloc[0]["End"].date()))
+                        dcc.DatePickerSingle(id="end-date-picker", date=str(config.roadmap_data.iloc[0]["End"].date()))
                     ], className="p-3"),
 
                 ], className="mt-30")
@@ -76,7 +79,7 @@ def create_layout():
                     id="milestones-checklist",
                     options=[
                         {"label": milestone, "value": iteration}
-                        for iteration, milestone in zip(roadmap_data["Iteration"], roadmap_data["Milestones"])
+                        for iteration, milestone in zip(config.roadmap_data["Iteration"], config.roadmap_data["Milestones"])
                     ],
                     value=[],
                     inline=True
@@ -88,13 +91,13 @@ def create_layout():
             dcc.Graph(
                 id="csf-bar-chart",
                 figure=px.bar(
-                    pd.DataFrame(csf_data),
+                    pd.DataFrame(config.csf_data),
                     x="Metric", y="Current",
                     title="Current vs. Target CSF",
                     color_discrete_sequence=["#636EFA"]
                 ).add_bar(
-                    x=csf_data["Metric"],
-                    y=csf_data["Target"],
+                    x=config.csf_data["Metric"],
+                    y=config.csf_data["Target"],
                     name="Target",
                     marker_color="#EF553B"
                 ).update_layout(
@@ -116,8 +119,9 @@ def create_layout():
                         step=5,
                         value=value
                     )
-                ]) for key, value in kpi_data.items()
+                ]) for key, value in config.kpi_data.items()
             ]
         ], style={"marginTop": "20px"}),
+        get_goals_card_body(),
         html.Div(id="simulation-output", style={"marginTop": "20px"})
     ])

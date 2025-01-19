@@ -148,7 +148,7 @@ iterations_md = {
   - Challenges
     """,
     "Refinement": """
-    Iteration 3: Refinement and Optimization (8 weeks)
+Iteration 3: Refinement and Optimization (8 weeks)
 Getting Started:
 •	Review the feedback collected during the pilot phase
 •	Plan the refinement activities, including identifying unresolved technical issues and areas where copilot can be optimized
