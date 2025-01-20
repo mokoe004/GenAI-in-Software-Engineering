@@ -6,16 +6,27 @@ class Config:
         with open('params.json', 'r') as file:
             data = json.load(file)
 
-        self.roadmap_data = pd.DataFrame(data['milestones'])
+        self.roadmap_data = pd.DataFrame(data['iterations'])
         self.roadmap_data["Start"] = pd.to_datetime(self.roadmap_data["Start"])
         self.roadmap_data["End"] = pd.to_datetime(self.roadmap_data["End"])
+
+        self.iteration_milestone = data['iteration_milestone']
 
         self.kpi_data = data['kpis']
         self.csf_data = pd.DataFrame(data['csfs'])
         self.goals = data['goals']
         self.team_members = data['team_members']
-        self.success_rate = 20.00
         self.goal_probabilities_list = init_goal_probabilities_list(self.goals)
+        self.milestones_achieved = []
+
+        self.success_rate = 0
+        self.milestone_multiplicator = 0
+        self.goals_multiplicator = 0.4
+        self.team_multiplicator = 0.2
+    def get_success_rate(self):
+        print(self.goal_probabilities_list)
+        print(f"Goals multiplicator: {self.goals_multiplicator}, Milestone multiplicator: {self.milestone_multiplicator}, Team multiplicator: {self.team_multiplicator}")
+        return round((self.success_rate + self.milestone_multiplicator + self.goals_multiplicator + self.team_multiplicator)*100,2)
 
 
 

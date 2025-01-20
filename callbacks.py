@@ -4,6 +4,8 @@ import plotly.express as px
 import pandas as pd
 import json
 
+from dash.html import Figure
+
 from data import config
 from iterations_md import iterations_md as iteration_markdown
 
@@ -53,7 +55,7 @@ def register_callbacks(app):
         [
             Input("update-timeline-btn", "n_clicks"),
             Input("reset-timeline-btn", "n_clicks"),
-            Input("milestones-checklist", "value")
+            Input("milestones-checklist-0", "value")
         ],
         [
             State("iteration-dropdown", "value"),
@@ -66,7 +68,7 @@ def register_callbacks(app):
         if not ctx.triggered:
             fig = px.timeline(
                 config.roadmap_data, x_start="Start", x_end="End", y="Iteration", color="Iteration",
-                title="Interactive Roadmap Timeline - Hover over Iteration to get hint, click on Iteration for more information", text="Milestones"
+                title="Interactive Roadmap Timeline - Hover over Iteration to get hint, click on Iteration for more information", text="First_Milestone"
             ).update_layout(xaxis_title="Timeline", yaxis_title="Implementation Phase", showlegend=False)
             fig.for_each_trace(lambda trace: trace.update(opacity=0.5 if trace.name in achieved_milestones else 1))
             return fig
@@ -84,7 +86,7 @@ def register_callbacks(app):
         # Recreate the timeline figure
         fig = px.timeline(
             config.roadmap_data, x_start="Start", x_end="End", y="Iteration", color="Iteration",
-            title="Interactive Roadmap Timeline", text="Milestones"
+            title="Interactive Roadmap Timeline", text="First_Milestone"
         )
         fig.update_layout(xaxis_title="Timeline", yaxis_title="Implementation Phase", showlegend=False)
         fig.for_each_trace(lambda trace: trace.update(opacity=0.5 if trace.name in achieved_milestones else 1))

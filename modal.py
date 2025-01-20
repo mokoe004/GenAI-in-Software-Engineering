@@ -13,7 +13,7 @@ def get_modal_button():
     """
     return html.Div([
         # Button to open the modal
-        dbc.Button("Configure Team Members", id="open-modal", n_clicks=0, className="mb-3"),
+        dbc.Button("Configure Team Members", id="open-modal", n_clicks=0, className="mb-3", color="secondary"),
 
         # The modal
         dbc.Modal([
@@ -37,21 +37,21 @@ def get_modal_button():
                     ], className="mb-3"),
 
                     html.Div([
-                        dbc.Label("Level of Commitment (1-5):"),
-                        dcc.Slider(id="commitment-slider", min=1, max=5, step=1, value=3,
-                                   marks={i: str(i) for i in range(1, 6)})
+                        dbc.Label("Level of Commitment (1-10):"),
+                        dcc.Slider(id="commitment-slider", min=1, max=10, step=1, value=3,
+                                   marks={i: str(i) for i in range(1, 11)})
                     ], className="mb-3"),
 
                     html.Div([
-                        dbc.Label("Resistance (1-5):"),
-                        dcc.Slider(id="resistance-slider", min=1, max=5, step=1, value=3,
-                                   marks={i: str(i) for i in range(1, 6)})
+                        dbc.Label("Resistance (1-10):"),
+                        dcc.Slider(id="resistance-slider", min=1, max=10, step=1, value=3,
+                                   marks={i: str(i) for i in range(1, 11)})
                     ], className="mb-3"),
 
                     html.Div([
-                        dbc.Label("Impact on Team (1-5):"),
-                        dcc.Slider(id="impact-slider", min=1, max=5, step=1, value=3,
-                                   marks={i: str(i) for i in range(1, 6)})
+                        dbc.Label("Impact on Team (1-10):"),
+                        dcc.Slider(id="impact-slider", min=1, max=10, step=1, value=3,
+                                   marks={i: str(i) for i in range(1, 11)})
                     ], className="mb-3")
                 ]),
             ]),
@@ -76,7 +76,10 @@ def register_modal_callbacks(app):
     @app.callback(
         [Output("modal", "is_open"),
          Output("experience-display", "children"),
-         Output("age-display", "children")],
+         Output("age-display", "children"),
+         Output("commitment-slider", "value"),
+         Output("resistance-slider", "value"),
+         Output("impact-slider", "value")],
         [Input("open-modal", "n_clicks"),
          Input("close-modal", "n_clicks"),
          Input("member-dropdown", "value")],
@@ -85,9 +88,9 @@ def register_modal_callbacks(app):
     def toggle_modal(open_clicks, close_clicks, selected_member, is_open):
         """Toggle the modal open or close and display static data."""
         if ctx.triggered_id == "open-modal":
-            return True, "", ""
+            return True, "", "", 3, 3, 3
         if ctx.triggered_id == "close-modal":
-            return False, "", ""
+            return False, "", "", 3, 3, 3
 
         # Update static displays based on selected member
         if selected_member:
@@ -95,9 +98,9 @@ def register_modal_callbacks(app):
             if member:
                 experience = f"{member['experience_years']} years"
                 age = f"{member['age']} years"
-                return is_open, experience, age
+                return is_open, experience, age, member["params"]["Level of Commitment"], member["params"]["Resistance"], member["params"]["Impact on team"]
 
-        return is_open, "", ""
+        return is_open, "", "", 3, 3, 3
 
     @app.callback(
         Output("output-div", "children"),

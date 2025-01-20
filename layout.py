@@ -1,3 +1,4 @@
+from milestones_checklist import get_milestones_checklist
 from modal import get_modal_button
 from data import config
 from goals_display import get_goals_card_body
@@ -20,6 +21,8 @@ def create_layout():
     """
     return dbc.Container(className="p-3", children=[
         html.H1("GitHub Copilot Implementation Simulator"),
+        html.P("This app simulates the implementation of GitHub Copilot in a company."),
+        html.P("You can configure the team members, adjust the roadmap, and set the KPIs and CSFs."),
         get_modal_button(),
         html.Div([], id="out-div"),
         dbc.Container([
@@ -30,7 +33,7 @@ def create_layout():
                     config.roadmap_data, x_start="Start", x_end="End", y="Iteration", color="Iteration",
                     title="Implementation Timeline - hover over the bars for more details, click to expand",
                     labels={"Iteration": "Phase"},
-                    text="Milestones"
+                    text="First_Milestone"
                 ).update_traces(
                     textposition="outside",
                     textfont=dict(size=10)
@@ -72,22 +75,12 @@ def create_layout():
         dbc.Button("Update Timeline", id="update-timeline-btn", n_clicks=0, className="m-3"),
         dbc.Button("Reset Timeline", id="reset-timeline-btn", n_clicks=0, className="m-3"),
         dbc.Container([
-            html.H4("Mark Milestones as Achieved"),
-            html.Div([
-
-                dbc.Checklist(
-                    id="milestones-checklist",
-                    options=[
-                        {"label": milestone, "value": iteration}
-                        for iteration, milestone in zip(config.roadmap_data["Iteration"], config.roadmap_data["Milestones"])
-                    ],
-                    value=[],
-                    inline=True
-                )
-            ], className="mt-3 ml-3")
+            html.H4("Mark Outcomes as Achieved"),
+            html.P("When Outcomes are checked the overall success rate will increse"),
+            get_milestones_checklist()
         ]),
         dbc.Container([
-            html.H2("Critical Succes Factors (CSF)"),
+            html.H2("Critical Success Factors (CSF)"),
             dcc.Graph(
                 id="csf-bar-chart",
                 figure=px.bar(

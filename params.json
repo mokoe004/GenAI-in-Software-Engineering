@@ -1,36 +1,96 @@
 {
-  "milestones": [
+  "iterations": [
     {
       "Iteration": "Planning & Training",
       "Start": "2025-01-01",
       "End": "2025-01-21",
-      "Milestones": "Stakeholder training completed"
+      "First_Milestone": "Stakeholder training completed",
+      "Milestones": [
+        "Clear definition of team-specific goals for CoPilot",
+        "Completion of stakeholder training",
+        "Strong buy-in from the manager and team members",
+        "Approved implementation plan with defined roles, milestones, and initial training schedule"
+      ]
     },
     {
       "Iteration": "Pilot Implementation",
       "Start": "2025-01-22",
       "End": "2025-02-28",
-      "Milestones": "Pilot success feedback gathered"
+      "First_Milestone": "Pilot success feedback gathered",
+      "Milestones": [
+        "Successful initial adoption by at least 80% of the team",
+        "Positive feedback on training effectiveness and tool usability",
+        "Feedback report highlighting early benefits and challenges"
+      ]
     },
     {
       "Iteration": "Refinement",
       "Start": "2025-03-01",
       "End": "2025-04-30",
-      "Milestones": "90% issues resolved"
+      "First_Milestone": "90% issues resolved",
+      "Milestones": [
+        "Demonstrable improvements in team productivity and code quality",
+        "Resolution of at least 90% of reported issues from the pilot phase",
+        "Refined workflows and processes tailored to the team’s needs"
+      ]
     },
     {
       "Iteration": "Full Integration",
       "Start": "2025-05-01",
       "End": "2025-06-30",
-      "Milestones": "Full integration achieved"
+      "First_Milestone": "Full integration achieved",
+      "Milestones": [
+        "Fully operational Copilot usage integrated into all workflows",
+        "Mechanisms for ongoing optimization",
+        "Consistent improvement in defined KPIs",
+        "Seamless adoption of CoPilot into all workflows",
+        "Final evaluation demonstrating the overall value of Copilot and providing a roadmap for future enhancements"
+      ]
+    }
+  ],
+  "iteration_milestone": [
+    {
+      "iteration": "Planning & Training",
+      "milestones": [
+        "Clear definition of team-specific goals for CoPilot",
+        "Completion of stakeholder training",
+        "Strong buy-in from the manager and team members",
+        "Approved implementation plan with defined roles, milestones, and initial training schedule"
+      ]
+    },
+    {
+      "iteration": "Pilot Implementation",
+      "milestones": [
+        "Successful initial adoption by at least 80% of the team",
+        "Positive feedback on training effectiveness and tool usability",
+        "Feedback report highlighting early benefits and challenges"
+      ]
+    },
+    {
+      "iteration": "Refinement",
+      "milestones": [
+        "Demonstrable improvements in team productivity and code quality",
+        "Resolution of at least 90% of reported issues from the pilot phase",
+        "Refined workflows and processes tailored to the team’s needs"
+      ]
+    },
+    {
+      "iteration": "Full Integration",
+      "milestones": [
+        "Fully operational Copilot usage integrated into all workflows",
+        "Mechanisms for ongoing optimization",
+        "Consistent improvement in defined KPIs",
+        "Seamless adoption of CoPilot into all workflows",
+        "Final evaluation demonstrating the overall value of Copilot and providing a roadmap for future enhancements"
+      ]
     }
   ],
   "kpis": {
-    "Productivity Increase": 100,
-    "Error Reduction": 100,
-    "Adoption Rate": 100
+    "Productivity Increase": 80,
+    "Error Reduction": 50,
+    "Adoption Rate": 40
   },
-"csfs": [
+  "csfs": [
     {
       "Metric": "Technical Infrastructure",
       "Current": 60,
@@ -66,113 +126,191 @@
     {
       "Description": "Increase productivity, quality, and sustainability of the team's software development processes.",
       "Factors": [
-        {"Name": "Productivity Increase", "Weight": 0.4},
-        {"Name": "Code Quality", "Weight": 0.3},
-        {"Name": "Technical Infrastructure", "Weight": 0.3}
+        {
+          "Name": "Productivity Increase",
+          "Weight": 0.4
+        },
+        {
+          "Name": "Code Quality",
+          "Weight": 0.3
+        },
+        {
+          "Name": "Technical Infrastructure",
+          "Weight": 0.3
+        }
       ]
     },
     {
       "Description": "Seamlessly integrate CoPilot into the team’s workflows.",
       "Factors": [
-        {"Name": "Employee Acceptance", "Weight": 0.5},
-        {"Name": "Code Quality", "Weight": 0.3},
-        {"Name": "Data Privacy", "Weight": 0.2}
+        {
+          "Name": "Employee Acceptance",
+          "Weight": 0.5
+        },
+        {
+          "Name": "Code Quality",
+          "Weight": 0.3
+        },
+        {
+          "Name": "Data Privacy",
+          "Weight": 0.2
+        }
       ]
     },
     {
       "Description": "Ensure team members' acceptance and engagement with CoPilot.",
       "Factors": [
-        {"Name": "Employee Acceptance", "Weight": 0.5},
-        {"Name": "Adoption Rate", "Weight": 0.3},
-        {"Name": "Technical Infrastructure", "Weight": 0.2}
+        {
+          "Name": "Employee Acceptance",
+          "Weight": 0.5
+        },
+        {
+          "Name": "Technical Infrastructure",
+          "Weight": 0.1
+        },
+        {
+          "Name": "Error Reduction",
+            "Weight": 0.3
+        },
+        {
+            "Name": "Adoption Rate",
+            "Weight": 0.1
+        }
       ]
     }
   ],
   "team_members": [
-        {
-            "name": "PO1",
-            "role": "Product Owner",
-            "experience_years": 15,
-            "age": 45,
-            "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "PO2",
-            "role": "Product Owner",
-            "experience_years": 10,
-            "age": 50,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "M1",
-            "role": "Manager",
-            "experience_years": 30,
-            "age": 55,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "A1",
-            "role": "Architect",
-            "experience_years": 20,
-            "age": 40,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "A2",
-            "role": "Architect",
-            "experience_years": 10,
-            "age": 35,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "A3",
-            "role": "Architect",
-            "experience_years": 5,
-            "age": 25,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "D1",
-            "role": "Developer",
-            "experience_years": 5,
-            "age": 27,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "D2",
-            "role": "Developer",
-            "experience_years": 7,
-            "age": 29,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "D3",
-            "role": "Developer",
-            "experience_years": 3,
-            "age": 23,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "D4",
-            "role": "Developer",
-            "experience_years": 25,
-            "age": 52,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "D5",
-            "role": "Developer",
-            "experience_years": 20,
-            "age": 50,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        },
-        {
-            "name": "D6",
-            "role": "Developer",
-            "experience_years": 12,
-            "age": 42,
-          "params": {"Level of Commitment": 3,"Resistance": 5,"Impact on team": 5}
-        }
-    ]
-
+    {
+      "name": "PO1",
+      "role": "Product Owner",
+      "experience_years": 15,
+      "age": 45,
+      "params": {
+        "Level of Commitment": 5,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "PO2",
+      "role": "Product Owner",
+      "experience_years": 10,
+      "age": 50,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "M1",
+      "role": "Manager",
+      "experience_years": 30,
+      "age": 55,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "A1",
+      "role": "Architect",
+      "experience_years": 20,
+      "age": 40,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "A2",
+      "role": "Architect",
+      "experience_years": 10,
+      "age": 35,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "A3",
+      "role": "Architect",
+      "experience_years": 5,
+      "age": 25,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "D1",
+      "role": "Developer",
+      "experience_years": 5,
+      "age": 27,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "D2",
+      "role": "Developer",
+      "experience_years": 7,
+      "age": 29,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "D3",
+      "role": "Developer",
+      "experience_years": 3,
+      "age": 23,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "D4",
+      "role": "Developer",
+      "experience_years": 25,
+      "age": 52,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "D5",
+      "role": "Developer",
+      "experience_years": 20,
+      "age": 50,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    },
+    {
+      "name": "D6",
+      "role": "Developer",
+      "experience_years": 12,
+      "age": 42,
+      "params": {
+        "Level of Commitment": 3,
+        "Resistance": 5,
+        "Impact on team": 5
+      }
+    }
+  ]
 }

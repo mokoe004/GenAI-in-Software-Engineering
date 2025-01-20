@@ -1,34 +1,68 @@
-# GenAI-in-Software-Engineering
+# KPI-Based Success Rate Simulator
 
-The goal is to develop a software-based visual configurator which simulates and visualizes the implementation of CoPilot. This simulator should represent the interplay of critical success factors along a roadmap including milestones of AI implementation in a user friendly way while referring explicitly to CoPilot in software development and engineering.
+This project provides a comprehensive dashboard to model, visualize, and analyze the success rate of goals based on Key Performance Indicators (KPIs), Critical Success Factors (CSFs), milestones, and team impact. The application is developed using **Dash**, **Plotly**, **Dash Bootstrap Components**, and **Python**.
 
-```bash
-pip install dash pandas dash_bootstrap_components
-```
+## Features
 
-Then run the app:
+- **KPI and CSF-Based Goal Success Calculation**:
+  - Each goal specifies KPIs and CSFs with respective weights, where the sum of weights equals 1.
+  - Example goal configuration:
+    ```json
+    {
+      "Description": "Seamlessly integrate CoPilot into the team’s workflows.",
+      "Factors": [
+        { "Name": "Employee Acceptance", "Weight": 0.5 },
+        { "Name": "Code Quality", "Weight": 0.3 },
+        { "Name": "Data Privacy", "Weight": 0.2 }
+      ]
+    }
+    ```
 
-```bash
-python app.py
-```
-# Calculation for goals
-For each goal, the calculation of the probability is done as follows:
-- Goal is calculated by considering the progress of its associated factors. Each factor has a weight, and the progress is determined either from KPI data or CSF data. The weighted progress of all factors is summed up and divided by the total weight to get the probability of achieving the goal. If no factors are present, the probability is set to 0.
-- Overall success for simplicity is calculated: 0.2 Team + 0.4 Milestones achieved + 0.4 Goals
-# How to configure the parameters
-- The parameters can be configured in the `params.json` file.
-- The `factors` key contains the list of factors. Each factor has the following keys:
-  - `name`: The name of the factor.
-  - `weight`: The weight of the factor in the calculation of the goal probability.
-  - `type`: The type of the factor. It can be either `kpi` or `csf`.
-  - `kpi`: The name of the KPI associated with the factor. This key is only present if the factor type is `kpi`.
-  - `csf`: The name of the CSF associated with the factor. This key is only present if the factor type is `csf`.
+- **Success Rate Composition**:
+  - Overall success rate is derived from:
+    - **40%**: Goals rate (calculated using KPI-CSF weights).
+    - **40%**: Achieved milestones.
+    - **20%**: Team impact (low sensitivity; multiple configurations needed to observe noticeable changes).
 
+- **Interactive Milestone Tracking**:
+  - Milestones are evenly weighted and can be toggled to simulate progress.
 
+- **Roadmap Visualization**:
+  - Visual interface to modify iteration dates.
+  - Potential future expansion to consider iteration lengths in success calculations.
 
+- **User-Friendly Design**:
+  - Developed with intuitive components for seamless interaction.
 
+## Application
 
+This project aligns with the **GenAI in Software Engineering** innovation case study, focusing on simulating the introduction and implementation of GitHub CoPilot in a software development department. The tool:
+- Models critical success factors and team dynamics.
+- Provides visual insights into the roadmap and milestones for implementation.
+- Empowers decision-makers with data-driven predictions.
 
+## Technology Stack
+
+- **Python**: Core language.
+- **Dash**: Framework for building the interactive web application.
+- **Plotly**: For creating advanced visualizations.
+- **Dash Bootstrap Components**: Enhancing the UI/UX design.
+
+## Setup
+
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>
+    ```
+2. Install the required dependencies:
+   ```bash
+   pip install dash pandas dash_bootstrap_components
+   ```
+3. Run the app:
+    ```bash
+    python app.py
+    ```
 
 
 #### If you want to change the styling of the app, change the `dbc.themes.BOOTSTRAP` line in `app.py` to any of the following:

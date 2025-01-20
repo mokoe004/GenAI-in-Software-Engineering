@@ -12,13 +12,14 @@ is_shown = False
 def get_goals_card_body():
     # Tabellarische Daten
     data = calculate.calculate_goals_probabilities()
+    calculate.calculate_overall_success()
 
     # Layout
     return dbc.Card([dbc.CardBody(
                     [
-                        html.H4(f"Overall Success Rate: {config.success_rate}%", className="card-title"),
-                        dbc.Progress(value=config.success_rate),
-                        html.P(f"Status: {"On Track" if config.success_rate >= 75 else "Needs Improvement"}", className="card-text"),
+                        html.H4(f"Overall Success Rate: {config.get_success_rate()}%", className="card-title"),
+                        dbc.Progress(value=config.get_success_rate()),
+                        html.P(f"Status: {"On Track" if config.get_success_rate() >= 75 else "Needs Improvement"}", className="card-text"),
                         html.Hr(),
                         # Ausklapp-Button
                         dbc.Button(
@@ -63,22 +64,32 @@ def register_goals_display_callbacks(app):
         is_shown = is_open
         return is_open
 
-    # Simulation
+    # Simulation Callback für Meilensteine
     @app.callback(
-        [Output("goals-card", "children")],
-        [Input("milestones-checklist", "value")]+
+        [Output("goals-card", "children", allow_duplicate=True)],
+        [
+            Input(f"milestones-checklist-{index}", "value")
+            for index in range(len(config.iteration_milestone))
+        ]+
         [
             Input(f"{key.replace(' ', '-').lower()}-slider", "value")
             for key in config.kpi_data.keys()
         ],
         prevent_initial_call=True
     )
-    def update_simulation(milestones_achieved, *slider_values):
-        # Update config values based on slider inputs
-        slider_keys = list(config.kpi_data.keys())  # Get the keys for easier mapping
+    def update_simulation(*inputs):
+        # Meilensteine und Slider-Werte aus den Inputs extrahieren
+        num_iterations = len(config.iteration_milestone)
+        milestones_achieved = inputs[:num_iterations]  # Erste Inputs sind Meilenstein-Werte
+        slider_values = inputs[num_iterations:]  # Danach kommen die Slider-Werte
 
-        # Map slider values to config.kpi_data
+        # Aktualisiere die Meilenstein-Konfiguration
+        calculate.calculate_milestones_achieved(milestones_achieved)
+
+        # Aktualisiere Slider-Werte in config.kpi_data
+        slider_keys = list(config.kpi_data.keys())
         for key, value in zip(slider_keys, slider_values):
             config.kpi_data[key] = value
 
+        # Rückgabe des aktualisierten Goals-Card-Inhalts
         return [get_goals_card_body()]
