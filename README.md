@@ -20,7 +20,7 @@ This project provides a comprehensive dashboard to model, visualize, and analyze
 
 - **Success Rate Composition**:
   - Overall success rate is derived from:
-    - **40%**: Goals rate (calculated using KPI-CSF weights).
+    - **40%**: Goals rate (calculated using KPI-CSF weights, where CSFs and KPIs can be dynamically adjusted through user inputs to reflect specific scenarios).
     - **40%**: Achieved milestones.
     - **20%**: Team impact (low sensitivity; multiple configurations needed to observe noticeable changes).
 
@@ -52,14 +52,20 @@ This project aligns with the **GenAI in Software Engineering** innovation case s
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone https://github.com/Clara1a2/GenAI-in-Software-Engineering.git
+   cd GenAI-in-Software-Engineering
     ```
-2. Install the required dependencies:
+2. Create and activate a virtual environment:
+   - On Windows:
+     ```bash
+     python -m venv venv
+     venv\Scripts\activate
+     ```
+3. Install the required dependencies:
    ```bash
    pip install dash pandas dash_bootstrap_components
    ```
-3. Run the app:
+4. Run the app:
     ```bash
     python app.py
     ```

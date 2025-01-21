@@ -1,4 +1,15 @@
-from modal import get_modal_button
+"""
+This module contains the layout and callbacks for the milestones checklist.
+
+The layout consists of a checklist for each iteration with the milestones as options.
+
+The callbacks update the roadmap timeline based on the selected milestones.
+
+Functions:
+- get_milestones_checklist: Returns the layout for the milestones checklist.
+- get_single_milestone: Returns a single milestone checklist.
+"""
+
 from data import config
 from goals_display import get_goals_card_body
 

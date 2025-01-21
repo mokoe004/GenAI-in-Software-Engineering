@@ -2,6 +2,7 @@ from milestones_checklist import get_milestones_checklist
 from modal import get_modal_button
 from data import config
 from goals_display import get_goals_card_body
+from csf_inputs import get_inputs
 
 from dash import html, dcc
 import dash_bootstrap_components as dbc
@@ -89,8 +90,8 @@ def create_layout():
                     title="Current vs. Target CSF",
                     color_discrete_sequence=["#636EFA"]
                 ).add_bar(
-                    x=config.csf_data["Metric"],
-                    y=config.csf_data["Target"],
+                    x=pd.DataFrame(config.csf_data)["Metric"],
+                    y=pd.DataFrame(config.csf_data)["Target"],
                     name="Target",
                     marker_color="#EF553B"
                 ).update_layout(
@@ -98,7 +99,8 @@ def create_layout():
                     yaxis_title="Percentage",
                     xaxis_title="CSF"
                 )
-            )
+            ),
+            get_inputs()
         ]),
         dbc.Container([
             html.H2("Adjust Parameters KPIs"),

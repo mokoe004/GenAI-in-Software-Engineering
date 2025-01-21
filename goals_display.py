@@ -1,4 +1,14 @@
-from random import random
+"""
+This file contains the layout and callbacks for the goals display.
+
+The layout consists of a card that displays the overall success rate and a table with the goals and their probabilities.
+
+The callbacks update the goals probabilities based on the user input.
+
+Functions:
+- get_goals_card_body: Returns the card layout with the goals and probabilities.
+- register_goals_display_callbacks: Registers the callbacks for the goals display.
+"""
 
 from dash import Dash, html, dash_table, Input, Output, State
 import dash_bootstrap_components as dbc
@@ -74,14 +84,18 @@ def register_goals_display_callbacks(app):
         [
             Input(f"{key.replace(' ', '-').lower()}-slider", "value")
             for key in config.kpi_data.keys()
+        ]+
+        [
+            Input(f"csf-input-{index}", "value") for index in range(len(config.csf_data))
         ],
         prevent_initial_call=True
     )
     def update_simulation(*inputs):
         # Meilensteine und Slider-Werte aus den Inputs extrahieren
         num_iterations = len(config.iteration_milestone)
+        num_sliders = len(config.kpi_data)
         milestones_achieved = inputs[:num_iterations]  # Erste Inputs sind Meilenstein-Werte
-        slider_values = inputs[num_iterations:]  # Danach kommen die Slider-Werte
+        slider_values = inputs[num_iterations:num_iterations + num_sliders]  # Danach kommen die Slider-Werte
 
         # Aktualisiere die Meilenstein-Konfiguration
         calculate.calculate_milestones_achieved(milestones_achieved)

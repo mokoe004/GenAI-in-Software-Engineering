@@ -23,7 +23,6 @@ def calculate_goal_probability(goal):
     weighted_sum = 0
 
     for factor in goal["Factors"]:
-        csfs = config.csf_data.to_dict(orient='records')
         factor_name = factor["Name"]
         factor_weight = factor["Weight"]
 
@@ -31,7 +30,7 @@ def calculate_goal_probability(goal):
         if factor_name in config.kpi_data:
             progress = config.kpi_data[factor_name] / 100  # KPI als Anteil
         else:
-            csf = next((c for c in csfs if c["Metric"] == factor_name), None)
+            csf = next((c for c in config.csf_data if c["Metric"] == factor_name), None)
             if csf:
                 progress = csf["Current"] / csf["Target"]  # CSF als Anteil
             else:
@@ -103,8 +102,9 @@ def calculate_milestones_achieved(achieved_milestones):
     config.milestone_multiplicator = round(prob * 0.4,2)
 
 def calculate_overall_success():
-
-
+    """
+    Calculate the overall success rate based on the goal probabilities, milestone multiplicator and team influence
+    """
     goals_probabilities_mean = 0.00
     for goal in config.goal_probabilities_list:
         goals_probabilities_mean += goal["Probability"]

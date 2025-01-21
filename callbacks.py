@@ -27,6 +27,17 @@ def register_callbacks(app):
         [State("offcanvas", "is_open")],
     )
     def toggle_offcanvas(clickData, is_open):
+        """
+        Callback to toggle the offcanvas for additional information on the roadmap
+
+        Args:
+        clickData: The data from the click event
+        is_open: The current state of the offcanvas
+
+        Returns:
+        is_open: The updated state of the offcanvas
+        details: The content to display in the offcanvas
+        """
         if clickData:
             # Get the iteration and milestone
             point = clickData["points"][0]
@@ -43,6 +54,16 @@ def register_callbacks(app):
         Input("iteration-dropdown", "value")
     )
     def update_date_pickers(selected_iteration):
+        """
+        Callback to update the date pickers based on the selected iteration
+
+        Args:
+        selected_iteration: The selected iteration
+
+        Returns:
+        start_date: The start date for the selected iteration
+        end_date: The end date for the selected iteration
+        """
         # Get the row for the selected iteration
         selected_row = config.roadmap_data[config.roadmap_data["Iteration"] == selected_iteration]
         start_date = selected_row["Start"].iloc[0].date()

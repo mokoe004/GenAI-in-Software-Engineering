@@ -1,3 +1,9 @@
+"""
+This file contains the Config class which is used to store the data from the params.json file.
+
+The Config class is used to store the data from the params.json file. It contains the roadmap data, iteration milestones, KPIs, CSFs, goals, team members, goal probabilities list, milestones achieved, success rate, milestone multiplicator, goals multiplicator, and team multiplicator.
+"""
+
 import pandas as pd
 import json
 
@@ -13,7 +19,7 @@ class Config:
         self.iteration_milestone = data['iteration_milestone']
 
         self.kpi_data = data['kpis']
-        self.csf_data = pd.DataFrame(data['csfs'])
+        self.csf_data = data['csfs']
         self.goals = data['goals']
         self.team_members = data['team_members']
         self.goal_probabilities_list = init_goal_probabilities_list(self.goals)
@@ -24,8 +30,6 @@ class Config:
         self.goals_multiplicator = 0.4
         self.team_multiplicator = 0.2
     def get_success_rate(self):
-        print(self.goal_probabilities_list)
-        print(f"Goals multiplicator: {self.goals_multiplicator}, Milestone multiplicator: {self.milestone_multiplicator}, Team multiplicator: {self.team_multiplicator}")
         return round((self.success_rate + self.milestone_multiplicator + self.goals_multiplicator + self.team_multiplicator)*100,2)
 
 

@@ -94,6 +94,7 @@ iterations_md = {
   - Milestones
   - Initial training schedule
 """,
+
     "Pilot Implementation": """# Iteration 2: Pilot Implementation (6 weeks)
 ### Overview
 - **Duration:** 6 weeks  
@@ -147,44 +148,64 @@ iterations_md = {
   - Early benefits
   - Challenges
     """,
-    "Refinement": """
-Iteration 3: Refinement and Optimization (8 weeks)
-Getting Started:
-•	Review the feedback collected during the pilot phase
-•	Plan the refinement activities, including identifying unresolved technical issues and areas where copilot can be optimized
-•	Define specific goals for the improvement based on the pilot project
--	Improved IDE integration, enhanced prompt effectiveness, etc.
--	At least 90% of the reported issues to be resolved
-Making Process:
-•	Incorporate feedback from the pilot phase and optimize CoPilot usage
-•	Address unresolved technical issues (tasks for developers and architectures) 
-•	Actively measure improvements by comparing results against predefined KPIs (e.g. coding time reduction, error rates, or developer satisfaction) (tasks for manager and product owner)
-Realizing Benefits:
-•	Update workflows and training materials to reflect lessons learned from the pilot phase 
-•	Introduce advanced training sessions for refining prompts and maximizing productivity
-•	Realize tangible improvements, such as enhanced productivity and better code quality, evidenced by resolving at least 90% of pilot-phase issues.
 
-Outcome:
-•	Demonstrable improvements in team productivity and code quality.
-•	Resolution of at least 90% of reported issues from the pilot phase.
-•	Refined workflows and processes tailored to the team’s needs.
+    "Refinement": """
+# Iteration 3: Refinement and Optimization (8 weeks)
+
+## **Getting Started**
+- Review the feedback collected during the pilot phase.
+- Plan refinement activities, including identifying unresolved technical issues and areas where Copilot can be optimized.
+- Define specific goals for improvement based on the pilot project:
+  - Improved IDE integration.
+  - Enhanced prompt effectiveness.
+  - Resolve at least **90% of reported issues**.
+
+---
+
+## **Making Progress**
+- Incorporate feedback from the pilot phase to optimize Copilot usage.
+- Address unresolved technical issues with tasks assigned to developers and architects.
+- Actively measure improvements by comparing results against predefined KPIs, such as:
+  - Reduced coding time.
+  - Decreased error rates.
+  - Increased developer satisfaction.
+  - Tasks for managers and product owners.
+
+---
+
+## **Realizing Benefits**
+- Update workflows and training materials to reflect lessons learned from the pilot phase.
+- Introduce advanced training sessions for refining prompts and maximizing productivity.
+- Achieve tangible improvements, such as:
+  - Enhanced productivity.
+  - Better code quality.
+  - Resolution of at least **90% of pilot-phase issues**.
+
+---
+
+## **Outcome**
+- Demonstrable improvements in team productivity and code quality.
+- Resolution of at least **90% of reported issues** from the pilot phase.
+- Refined workflows and processes tailored to the team’s needs.
 
     """,
+
     "Full Integration": """
-    # Iteration 4: Full Integration and Sustainability (11 weeks)
-### Overview
-- **Duration:** 11 weeks  
+# Iteration 4: Full Integration and Sustainability (11 weeks)
+
+## **Overview**
+- **Duration:** 11 weeks
 
 ---
 
 ## **Getting Started**
-- **Define Objectives:**
+- Define objectives:
   - Embed Copilot into daily workflows across all teams.
   - Align on long-term goals for Copilot adoption, emphasizing continuous improvement.
-- **Phased Rollout Plan:**
+- Develop a phased rollout plan:
   - Identify teams and projects for incremental integration.
-- **Stakeholder Alignment:**
-  - Ensure all stakeholders understand the long-term benefits of Copilot.
+- Ensure stakeholder alignment:
+  - Communicate the long-term benefits of Copilot.
   - Fully embed Copilot into workflows and establish systems for continuous improvement.
 
 ---
@@ -192,16 +213,15 @@ Outcome:
 ## **Making Progress**
 ### Iterative Deployment
 - Roll out Copilot to additional teams in phases.
-- Fully embed Copilot into daily workflows and integrate it into:
-  - Ongoing projects.
-  - Future projects for workflow consistency.
+- Fully integrate Copilot into:
+  - Daily workflows.
+  - Ongoing and future projects for workflow consistency.
 - Regularly monitor:
   - Performance metrics.
-  - Team feedback to identify opportunities for further optimization.
+  - Team feedback to identify further optimization opportunities.
 
 ### Cultural Integration
-- Foster collaboration between teams to:
-  - Share insights and best practices.
+- Foster collaboration between teams to share insights and best practices.
 - Address concerns about AI replacing human roles by emphasizing Copilot as a tool for augmentation, not replacement.
 
 ### Continuous Improvement
@@ -233,10 +253,11 @@ Outcome:
 ---
 
 ## **Outcome**
-- **Fully operational Copilot usage** integrated into all workflows.
-- Established **mechanisms for ongoing optimization**.
-- Consistent improvement in **defined KPIs**.
-- **Seamless adoption** of Copilot into workflows.
-- **Final evaluation** demonstrating the overall value of Copilot and providing a roadmap for future enhancements.
+- Fully operational Copilot usage integrated into all workflows.
+- Established mechanisms for ongoing optimization.
+- Consistent improvement in defined KPIs.
+- Seamless adoption of Copilot into workflows.
+- Final evaluation demonstrating the overall value of Copilot and providing a roadmap for future enhancements.
+
     """
 }
